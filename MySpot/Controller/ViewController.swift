@@ -8,12 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+   
+    var mySpotNetworking = MySpotNetworking()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        mySpotNetworking.delegate = self
+        
     }
+    
+   
 
+}
+
+extension ViewController: MySpotNetworkingDelegate {
+    
+    func didUpdate(_ thisIsFrom: MySpotNetworking, mySpotModel: MySpotModel) {
+        print("hey")
+    }
 
 }
 

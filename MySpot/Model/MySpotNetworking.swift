@@ -6,25 +6,31 @@
 //
 
 import Foundation
-
-import Foundation
 import CoreLocation
 
+protocol MySpotNetworkingDelegate {
+    // thisIsFrom: MySpotNetworking - this is a convention to realize from where are data when we call didUpdate
+    func didUpdate(_ thisIsFrom: MySpotNetworking, mySpotModel: MySpotModel)
+}
 
 struct MySpotNetworking {
+    
+    var delegate: MySpotNetworkingDelegate?
+    
     let mySpotURL = "https://api.openweathermap.org/data/2.5/weather?appid=YOURAPPID&units=metric"
     
+    //We can fetch data typing the nome of the city
     func fetchDataToCity(cityName: String) {
         let urlWithCity = "\(mySpotURL)&q=\(cityName)"
-        performRequest(urlWithCity: urlWithCity)
+        performRequest(urlWithCity)
     }
-    
+    //We can fetch data about our place by pressing the location Button
     func fetchDataToCoordinates(latitude: CLLocationDegrees, longitute: CLLocationDegrees) {
         let urlWithCoordinates = "\(mySpotURL)&lat=\(latitude)&lon=\(longitute)"
-        performRequest(urlWithCity: urlWithCoordinates)
+        performRequest(urlWithCoordinates)
     }
         
-    func performRequest (urlWithCity: String) {
+    func performRequest (_ urlWithCity: String) {
         //1. Create URL
         if let url = URL(string: urlWithCity) {
             
@@ -40,7 +46,7 @@ struct MySpotNetworking {
                 
                 if let safeData = data {
                     if let result = self.fetchJSON(JSONData: safeData) {
-                        // We have data
+                        self.delegate?.didUpdate(self, mySpotModel: result)
                     }
                 }
             }
@@ -66,6 +72,7 @@ struct MySpotNetworking {
             
             let mySpotModel = MySpotModel(name: name, temperature: temperature, timezone: timezone, country: country, weatherDestcription: description, conditionId: id, coordinateLatitude: lat, coordinateLongitude: lon, sunrise: sunrise, sunset: sunset)
             
+            // for tests
             print(mySpotModel.condtionName)
             print(mySpotModel.conditionId)
             print(mySpotModel.coordinateLatitude)
