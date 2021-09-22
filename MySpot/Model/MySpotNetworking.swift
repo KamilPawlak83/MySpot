@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 protocol MySpotNetworkingDelegate {
-    // thisIsFrom: MySpotNetworking - this is a convention to realize from where are data when we call didUpdate
+    // thisIsFrom: MySpotNetworking - this is a convention to realize - from where are the data when we call didUpdate
     func didUpdate(_ thisIsFrom: MySpotNetworking, mySpotModel: MySpotModel)
 }
 
@@ -17,14 +17,14 @@ struct MySpotNetworking {
     
     var delegate: MySpotNetworkingDelegate?
     
-    let mySpotURL = "https://api.openweathermap.org/data/2.5/weather?appid=YOURAPPID&units=metric"
+    let mySpotURL = "https://api.openweathermap.org/data/2.5/weather?appid=YOURIDd&units=metric"
     
-    //We can fetch data typing the nome of the city
+    //We can fetch data typing the name of the city
     func fetchDataToCity(cityName: String) {
         let urlWithCity = "\(mySpotURL)&q=\(cityName)"
         performRequest(urlWithCity)
     }
-    //We can fetch data about our place by pressing the location Button
+    //We can fetch data by pressing the location Button
     func fetchDataToCoordinates(latitude: CLLocationDegrees, longitute: CLLocationDegrees) {
         let urlWithCoordinates = "\(mySpotURL)&lat=\(latitude)&lon=\(longitute)"
         performRequest(urlWithCoordinates)
