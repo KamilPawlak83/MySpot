@@ -72,8 +72,9 @@ struct MySpotNetworking {
             
             let mySpotModel = MySpotModel(name: name, temperature: temperature, timezone: timezone, country: country, weatherDestcription: description, conditionId: id, coordinateLatitude: lat, coordinateLongitude: lon, sunrise: sunrise, sunset: sunset)
             
+            
             // for tests
-            print(mySpotModel.condtionName)
+            print(mySpotModel.conditionName)
             print(mySpotModel.conditionId)
             print(mySpotModel.coordinateLatitude)
             print(mySpotModel.coordinateLongitude)

@@ -23,7 +23,7 @@ struct MySpotModel {
         return String(format: "%.1f", temperature)
     }
     
-    var condtionName: String {
+    var conditionName: String {
         switch conditionId {
         case 200...232: return "cloud.bolt"
         case 300...321: return "cloud.drizzle"
