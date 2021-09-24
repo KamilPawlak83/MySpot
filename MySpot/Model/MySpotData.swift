@@ -22,8 +22,8 @@ struct Temperature: Codable {
 
 struct CountryAndSys: Codable {
     let country: String
-    let sunrise: Int
-    let sunset: Int
+    let sunrise: Double
+    let sunset: Double
 }
 
 struct Weather: Codable {

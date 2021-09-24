@@ -12,9 +12,7 @@ class ViewController: UIViewController {
   
    
     @IBOutlet var searchTextField: UITextField!
-    
     @IBOutlet var cityLabel: UILabel!
-    
     @IBOutlet var conditionImage: UIImageView!
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var sunriseLabel: UILabel!
@@ -31,7 +29,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -40,11 +37,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func locationButonPressed(_ sender: UIButton) {
+        locationManager.requestLocation()
     }
-    
-  
-    
-    
 }
 
 //MARK: - MySpotNetworkingDelegate Section
@@ -55,12 +49,22 @@ extension ViewController: MySpotNetworkingDelegate {
             self.temperatureLabel.text = "\(mySpotModel.temperatureString)"
             self.conditionImage.image = UIImage(systemName: mySpotModel.conditionName)
             self.cityLabel.text = mySpotModel.name
-            self.sunriseLabel.text = String(mySpotModel.sunrise)
-            self.sunsetLabel.text = String(mySpotModel.sunset)
+            let sunrise = Date(timeIntervalSince1970: mySpotModel.sunrise)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = DateFormatter.Style.medium
+            self.sunriseLabel.text = dateFormatter.string(from: sunrise)
+            let sunset = Date(timeIntervalSince1970: mySpotModel.sunset)
+            self.sunsetLabel.text = dateFormatter.string(from: sunset)
             self.latitudeLabel.text = String(mySpotModel.coordinateLatitude)
             self.longitudeLabel.text = String(mySpotModel.coordinateLongitude)
             self.countryLabel.text = mySpotModel.country
-            self.timeZoneLabel.text = String(mySpotModel.timezone)
+            let timeZone = mySpotModel.timezone / 3600
+            if timeZone < 0 {
+                self.timeZoneLabel.text = "GTM \(timeZone)"
+            } else {
+                self.timeZoneLabel.text = "GTM +\(timeZone)"
+            }
+         
         }
     }
 }
@@ -90,10 +94,9 @@ func locationManager(_ manager: CLLocationManager, didFailWithError error: Error
 extension ViewController: UITextFieldDelegate {
     @IBAction func searchButtonPressed(_ sender: UIButton) {
     if searchTextField.text != "" {
-        print(searchTextField.text!)
         searchTextField.endEditing(true)
     } else {
-        searchTextField.placeholder = "Type Something1" // for test
+        searchTextField.placeholder = "Type Something"
     }
 }
 
@@ -114,7 +117,7 @@ func textFieldDidEndEditing(_ textField: UITextField) {
 func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
     if textField.text != "" {
         return true
-    } else { textField.placeholder = "Type Something2" // for test
+    } else { textField.placeholder = "Type Something"
         return false
     }
 }

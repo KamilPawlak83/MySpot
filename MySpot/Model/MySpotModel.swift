@@ -16,8 +16,8 @@ struct MySpotModel {
     let conditionId: Int
     let coordinateLatitude: Double
     let coordinateLongitude: Double
-    let sunrise: Int
-    let sunset: Int
+    let sunrise: Double
+    let sunset: Double
     
     var temperatureString: String {
         return String(format: "%.1f", temperature)

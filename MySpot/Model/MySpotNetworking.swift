@@ -17,7 +17,7 @@ struct MySpotNetworking {
     
     var delegate: MySpotNetworkingDelegate?
     
-    let mySpotURL = "https://api.openweathermap.org/data/2.5/weather?appid=YOURIDd&units=metric"
+    let mySpotURL = "https://api.openweathermap.org/data/2.5/weather?appid=YOURAPPID&units=metric"
     
     //We can fetch data typing the name of the city
     func fetchDataToCity(cityName: String) {
@@ -51,7 +51,6 @@ struct MySpotNetworking {
                 }
             }
             task.resume()
-            
         }
     }
     
@@ -71,21 +70,6 @@ struct MySpotNetworking {
             let sunset = decodedData.sys.sunset
             
             let mySpotModel = MySpotModel(name: name, temperature: temperature, timezone: timezone, country: country, weatherDestcription: description, conditionId: id, coordinateLatitude: lat, coordinateLongitude: lon, sunrise: sunrise, sunset: sunset)
-            
-            
-            // for tests
-            print(mySpotModel.conditionName)
-            print(mySpotModel.conditionId)
-            print(mySpotModel.coordinateLatitude)
-            print(mySpotModel.coordinateLongitude)
-            print(mySpotModel.country)
-            print(mySpotModel.name)
-            print(mySpotModel.temperature)
-            print(mySpotModel.temperatureString)
-            print(mySpotModel.timezone)
-            print(mySpotModel.weatherDestcription)
-            print(mySpotModel.sunrise)
-            print(mySpotModel.sunset)
             
             return mySpotModel
             

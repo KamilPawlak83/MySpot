@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +27,7 @@
                                             <constraint firstAttribute="height" constant="44" id="vYK-EE-ivF"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="locationButton" backgroundImage="location.circle.fill" catalog="system"/>
+                                        <state key="normal" backgroundImage="location.circle.fill" catalog="system"/>
                                         <connections>
                                             <action selector="locationButonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WSL-SX-C6N"/>
                                         </connections>
@@ -47,15 +48,15 @@
                                             <constraint firstAttribute="height" constant="44" id="x5A-5U-lbp"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="searchButton" backgroundImage="magnifyingglass.circle.fill" catalog="system"/>
+                                        <state key="normal" backgroundImage="magnifyingglass.circle.fill" catalog="system"/>
                                         <connections>
                                             <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oQv-zh-5dv"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cityLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-aa-UDT">
-                                <rect key="frame" x="110" y="138" width="155" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Spot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-aa-UDT">
+                                <rect key="frame" x="104.66666666666669" y="108" width="166" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -297,7 +298,7 @@
                             <constraint firstItem="sJr-G9-euc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ywf-ay-qHX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sJr-G9-euc" secondAttribute="trailing" constant="10" id="bdf-hY-axU"/>
                             <constraint firstItem="q7O-dT-Id1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="gXQ-m6-ZDS"/>
-                            <constraint firstItem="d2T-aa-UDT" firstAttribute="top" secondItem="sJr-G9-euc" secondAttribute="bottom" constant="50" id="hQu-oW-grW"/>
+                            <constraint firstItem="d2T-aa-UDT" firstAttribute="top" secondItem="sJr-G9-euc" secondAttribute="bottom" constant="20" id="hQu-oW-grW"/>
                             <constraint firstItem="d2T-aa-UDT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="p4P-Y8-2gm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="q7O-dT-Id1" secondAttribute="trailing" constant="10" id="pL9-gv-7Sh"/>
                             <constraint firstItem="sJr-G9-euc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="uaA-D2-pR7"/>
@@ -323,7 +324,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud.rain" catalog="system" width="128" height="125"/>
+        <image name="cloud.rain" catalog="system" width="125" height="128"/>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
