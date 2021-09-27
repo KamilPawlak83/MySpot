@@ -7,6 +7,7 @@
 
 import Foundation
 
+// This Struct must be exactly like JSON file form openweathermap.org
 struct MySpotData: Codable {
     let name: String
     let main: Temperature

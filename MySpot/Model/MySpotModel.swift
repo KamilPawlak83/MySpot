@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct MySpotModel {
     let name: String
     let temperature: Double
@@ -19,6 +20,7 @@ struct MySpotModel {
     let sunrise: Double
     let sunset: Double
     
+    // these are computed properties
     var temperatureString: String {
         return String(format: "%.1f", temperature)
     }

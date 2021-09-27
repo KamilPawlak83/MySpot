@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // first we have to use delegate and than request for location
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -46,23 +47,26 @@ extension ViewController: MySpotNetworkingDelegate {
     
     func didUpdate(_ thisIsFrom: MySpotNetworking, mySpotModel: MySpotModel) {
         DispatchQueue.main.async {
-            self.temperatureLabel.text = "\(mySpotModel.temperatureString)"
+            self.temperatureLabel.text = "\(mySpotModel.temperatureString) °C"
             self.conditionImage.image = UIImage(systemName: mySpotModel.conditionName)
             self.cityLabel.text = mySpotModel.name
+            // Sunrise with proper date format (only time)
             let sunrise = Date(timeIntervalSince1970: mySpotModel.sunrise)
             let dateFormatter = DateFormatter()
             dateFormatter.timeStyle = DateFormatter.Style.medium
             self.sunriseLabel.text = dateFormatter.string(from: sunrise)
+            // Sunset with proper date format (only time)
             let sunset = Date(timeIntervalSince1970: mySpotModel.sunset)
             self.sunsetLabel.text = dateFormatter.string(from: sunset)
             self.latitudeLabel.text = String(mySpotModel.coordinateLatitude)
             self.longitudeLabel.text = String(mySpotModel.coordinateLongitude)
             self.countryLabel.text = mySpotModel.country
+            // We have to change data for more popular description like ( GMT -1,GMT +0, GMT +1, etc)
             let timeZone = mySpotModel.timezone / 3600
             if timeZone < 0 {
-                self.timeZoneLabel.text = "GTM \(timeZone)"
+                self.timeZoneLabel.text = "GMT \(timeZone)"
             } else {
-                self.timeZoneLabel.text = "GTM +\(timeZone)"
+                self.timeZoneLabel.text = "GMT +\(timeZone)"
             }
          
         }
@@ -83,7 +87,7 @@ func locationManager(_ manager: CLLocationManager,
         mySpotNetworking.fetchDataToCoordinates(latitude: lat, longitute: lon)
     }
 }
-
+//according to the documentation we need to use this didFailWithError method
 func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
 {
     print(error)
@@ -100,13 +104,14 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
+// when we press return button on keyboard
 func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    print(searchTextField.text!)
     searchTextField.endEditing(true)
     return true
 }
-
+// when we end editing
 func textFieldDidEndEditing(_ textField: UITextField) {
+    //if we have data
     if let city = searchTextField.text {
         mySpotNetworking.fetchDataToCity(cityName: city)
     }
@@ -114,6 +119,7 @@ func textFieldDidEndEditing(_ textField: UITextField) {
     searchTextField.placeholder = "Search"
     
 }
+// if we type something and press return or search button the keyboard will hide and func textFieldDidEndEditing will start.
 func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
     if textField.text != "" {
         return true

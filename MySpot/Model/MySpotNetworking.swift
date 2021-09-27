@@ -9,14 +9,16 @@ import Foundation
 import CoreLocation
 
 protocol MySpotNetworkingDelegate {
-    // thisIsFrom: MySpotNetworking - this is a convention to realize - from where are the data when we call didUpdate
+    // thisIsFrom: MySpotNetworking - this is a convention to realize - from where is the data when we call didUpdate
     func didUpdate(_ thisIsFrom: MySpotNetworking, mySpotModel: MySpotModel)
 }
 
 struct MySpotNetworking {
     
+    //we use delegate pattern so we can be able to reuse this struct in different project
     var delegate: MySpotNetworkingDelegate?
     
+    // We have to put our private app id to this string
     let mySpotURL = "https://api.openweathermap.org/data/2.5/weather?appid=YOURAPPID&units=metric"
     
     //We can fetch data typing the name of the city
@@ -46,6 +48,7 @@ struct MySpotNetworking {
                 
                 if let safeData = data {
                     if let result = self.fetchJSON(JSONData: safeData) {
+                        // In this place we run our delegate with data (result).
                         self.delegate?.didUpdate(self, mySpotModel: result)
                     }
                 }
@@ -53,7 +56,7 @@ struct MySpotNetworking {
             task.resume()
         }
     }
-    
+    // We Decode thata form JSON to our model (MySpotModel)
     func fetchJSON(JSONData: Data) -> MySpotModel? {
         let decoder = JSONDecoder()
         do {
